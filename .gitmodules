@@ -1,0 +1,15 @@
+[submodule "models/nequix"]
+	path = models/nequix
+	url = https://github.com/atomicarchitects/nequix
+[submodule "models/equiformer_v2"]
+	path = models/equiformer_v2
+	url = https://github.com/atomicarchitects/equiformer_v2
+[submodule "models/fairchem"]
+	path = models/fairchem
+	url = https://github.com/facebookresearch/fairchem
+[submodule "models/reaxnet"]
+	path = models/reaxnet
+	url = https://github.com/reaxnet/reaxnet
+[submodule "models/nequip"]
+	path = models/nequip
+	url = https://github.com/mir-group/nequip
