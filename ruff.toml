@@ -1,0 +1,93 @@
+# Disable ruff for this project
+exclude = ["*"]
+
+# Match `.pre-commit-config.yaml` (ruff/isort line length).
+line-length = 130
+indent-width = 4
+
+# Assume Python 3.13
+target-version = "py313"
+
+src = ["."]
+
+[lint]
+# Baseline "serious" correctness checks, plus a curated subset of maintainability rules.
+select = [
+    "B",    # flake8-bugbear
+    "C4",   # flake8-comprehensions
+    "E",    # pycodestyle error
+    "F",    # pyflakes
+    "FA",   # flake8-future-annotations
+    "I",    # isort (Ruff)
+    "ICN",  # flake8-import-conventions
+    "PERF", # perflint
+    "PIE",  # flake8-pie
+    "PT",   # flake8-pytest-style
+    "Q",    # flake8-quotes
+    "RET",  # flake8-return
+    "RSE",  # flake8-raise
+    "RUF",  # Ruff-specific rules
+    "SIM",  # flake8-simplify
+    "SLOT", # flake8-slots
+    "TID",  # flake8-tidy-imports
+    "W",    # pycodestyle warning
+    "YTT",  # flake8-2020
+]
+ignore = [
+    "B008",   # Function call in default argument (common in config-style APIs)
+    "B905",   # `zip()` without explicit `strict=...` (may change runtime behavior)
+    "E402",   # Module level import not at top of file
+    "E501",   # Line too long (handled by formatter; keep line-length for formatting only)
+    "F401",   # Imported but unused (handled by per-file-ignores for `__init__.py`)
+    "RUF002", # Ambiguous unicode in docstring
+    "RUF003", # Ambiguous unicode in comment
+    "RUF005", # Collection literal concatenation (preference; can hurt readability)
+    "RUF013", # Implicit Optional (requires type-hint refactor)
+    "SIM108", # Ternary operator preference is subjective
+]
+
+# Allow fix for all enabled rules (when `--fix`) is provided.
+fixable = ["ALL"]
+unfixable = [
+    "T20",  # Removes print statements
+    "F841", # Removes unused variables
+]
+
+# Allow unused variables when underscore-prefixed.
+dummy-variable-rgx = "^(_+|(_+[a-zA-Z0-9_]*[a-zA-Z0-9]+?))$"
+
+[lint.isort]
+known-first-party = ["mars", "tools", "tests"]
+
+[lint.pydocstyle]
+convention = "numpy"
+
+[lint.per-file-ignores]
+"**/__init__.py" = ["F401"]
+
+[format]
+# Like Black, use double quotes for strings.
+quote-style = "double"
+
+# Like Black, indent with spaces, rather than tabs.
+indent-style = "space"
+
+# Like Black, respect magic trailing commas.
+skip-magic-trailing-comma = false
+
+# Like Black, automatically detect the appropriate line ending.
+line-ending = "auto"
+
+# Enable auto-formatting of code examples in docstrings. Markdown,
+# reStructuredText code/literal blocks and doctests are all supported.
+#
+# This is currently disabled by default, but it is planned for this
+# to be opt-out in the future.
+docstring-code-format = true
+
+# Set the line length limit used when formatting code snippets in
+# docstrings.
+#
+# This only has an effect when the `docstring-code-format` setting is
+# enabled.
+docstring-code-line-length = "dynamic"
